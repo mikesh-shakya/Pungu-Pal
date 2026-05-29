@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-@NSManaged public class FoodLog: NSManagedObject {
+public class FoodLog: NSManagedObject {
     @NSManaged public var id: UUID
     @NSManaged public var date: Date
     @NSManaged public var quantity: Double

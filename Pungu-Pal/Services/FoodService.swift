@@ -24,7 +24,7 @@ class FoodService {
     }
     
     func getAllFoods(context: NSManagedObjectContext) -> [Food] {
-        let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
+        let fetchRequest = Food.fetchRequest() as! NSFetchRequest<Food>
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Food.createdAt, ascending: false)]
         
         do {
@@ -52,7 +52,7 @@ class FoodService {
     }
     
     func getFoodLogsForDate(_ date: Date, user: User, context: NSManagedObjectContext) -> [FoodLog] {
-        let fetchRequest: NSFetchRequest<FoodLog> = FoodLog.fetchRequest()
+        let fetchRequest = FoodLog.fetchRequest() as! NSFetchRequest<FoodLog>
         let startOfDay = Calendar.current.startOfDay(for: date)
         let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
         
@@ -81,3 +81,4 @@ class FoodService {
         coreDataManager.save()
     }
 }
+

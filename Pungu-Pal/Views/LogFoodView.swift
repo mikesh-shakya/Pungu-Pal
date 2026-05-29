@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 
 struct LogFoodView: View {
     @Environment(\.managedObjectContext) var managedObjectContext

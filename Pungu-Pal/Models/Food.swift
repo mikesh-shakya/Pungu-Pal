@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-@NSManaged public class Food: NSManagedObject {
+public class Food: NSManagedObject {
     @NSManaged public var id: UUID
     @NSManaged public var name: String
     @NSManaged public var calories: Int32
@@ -27,4 +27,4 @@ import CoreData
 
 extension Food {
     @NSManaged public var foodLogsArray: [FoodLog]
-}
+} 

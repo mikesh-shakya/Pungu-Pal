@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 import CoreData
 
 class HomeViewModel: NSObject, ObservableObject {
@@ -22,7 +23,8 @@ class HomeViewModel: NSObject, ObservableObject {
     }
     
     private func setupFetchedResultsController() {
-        let fetchRequest: NSFetchRequest<FoodLog> = FoodLog.fetchRequest()
+        let fetchRequest = NSFetchRequest<FoodLog>(entityName: "FoodLog")
+        fetchRequest.entity = NSEntityDescription.entity(forEntityName: "FoodLog", in: context)
         let startOfDay = Calendar.current.startOfDay(for: Date())
         let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
         

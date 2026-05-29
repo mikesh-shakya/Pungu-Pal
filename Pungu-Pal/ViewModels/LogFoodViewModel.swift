@@ -1,5 +1,6 @@
 import Foundation
 import CoreData
+import Combine
 
 class LogFoodViewModel: NSObject, ObservableObject {
     @Published var foodName: String = ""

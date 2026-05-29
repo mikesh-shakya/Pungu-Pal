@@ -1,14 +1,12 @@
 import SwiftUI
-internal import CoreData
+import SwiftData
 
 @main
 struct PunguPalApp: App {
-    let coreDataManager = CoreDataManager.shared
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, coreDataManager.container.viewContext)
         }
+        .modelContainer(for: [User.self, FoodLog.self])
     }
 }

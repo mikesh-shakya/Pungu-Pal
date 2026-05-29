@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-@NSManaged public class User: NSManagedObject {
+public class User: NSManagedObject {
     @NSManaged public var id: UUID
     @NSManaged public var name: String
     @NSManaged public var dailyCalorieGoal: Int32

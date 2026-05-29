@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 
 struct HistoryView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -27,7 +28,7 @@ struct HistoryView: View {
                     .background(Constants.Colors.cardBackground)
                     .cornerRadius(Constants.Dimensions.cornerRadius)
                     .padding(Constants.Dimensions.padding)
-                    .onChange(of: selectedDate) { _ in
+                    .onChange(of: selectedDate) {
                         loadDataForSelectedDate()
                     }
                     

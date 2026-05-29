@@ -29,7 +29,7 @@ class CoreDataManager {
     }
     
     func getOrCreateDefaultUser(context: NSManagedObjectContext) -> User {
-        let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
+        let fetchRequest = User.fetchRequest() as! NSFetchRequest<User>
         
         if let existingUser = try? context.fetch(fetchRequest).first {
             return existingUser
