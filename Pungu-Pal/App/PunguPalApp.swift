@@ -7,6 +7,6 @@ struct PunguPalApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [User.self, FoodLog.self])
+        .modelContainer(for: FoodEntry.self)
     }
 }
