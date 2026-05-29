@@ -1,34 +1,55 @@
 import SwiftUI
-import CoreData
+import SwiftData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @State private var selectedTab = 0
-    
+
+    @Query(
+        sort: \FoodEntry.createdAt,
+        order: .reverse
+    )
+    private var entries: [FoodEntry]
+
+    @State private var showingAddFood = false
+
+    var totalCalories: Int {
+        entries.reduce(0) { $0 + $1.calories }
+    }
+
     var body: some View {
-        TabView(selection: $selectedTab) {
-            HomeView()
-                .tabItem {
-                    Label("Today", systemImage: "calendar")
+        NavigationStack {
+            VStack(spacing: 24) {
+
+                VStack {
+                    Text("Today's Calories")
+                        .font(.headline)
+
+                    Text("\(totalCalories)")
+                        .font(.system(size: 48, weight: .bold))
                 }
-                .tag(0)
-            
-            HistoryView()
-                .tabItem {
-                    Label("History", systemImage: "chart.bar")
+
+                List {
+                    ForEach(entries) { entry in
+                        HStack {
+                            Text(entry.name)
+
+                            Spacer()
+
+                            Text("\(entry.calories)")
+                        }
+                    }
                 }
-                .tag(1)
-            
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
+            }
+            .navigationTitle("Calories")
+            .toolbar {
+                Button {
+                    showingAddFood = true
+                } label: {
+                    Image(systemName: "plus")
                 }
-                .tag(2)
+            }
+            .sheet(isPresented: $showingAddFood) {
+                AddFoodView()
+            }
         }
     }
-}
-
-#Preview {
-    ContentView()
-        .environment(\.managedObjectContext, CoreDataManager.shared.container.viewContext)
 }
